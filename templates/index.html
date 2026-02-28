@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Transfer Room</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        <h1>📁 File Transfer Room</h1>
+        <p class="subtitle">Create a temporary room to share files in real-time</p>
+
+        <!-- CREATE ROOM SECTION -->
+        <div class="card">
+            <h2>📤 Start a Transfer</h2>
+            <p style="text-align: center; color: #666; margin-bottom: 20px;">
+                Create a private room. Files and the room will be deleted automatically after 15 minutes.
+            </p>
+            <form action="/create" method="POST">
+                <button type="submit" class="btn btn-primary">Create Room (15 Min)</button>
+            </form>
+            <p class="info">No registration required • Real-time sync • Instant setup</p>
+        </div>
+
+        <!-- JOIN ROOM SECTION -->
+        <div class="card">
+            <h2>📥 Join a Room</h2>
+            <form action="/join" method="POST">
+                <input type="text" name="code" placeholder="Enter 6-digit code" pattern="[0-9]{6}" maxlength="6"
+                    required>
+                <button type="submit" class="btn btn-secondary">Join Room</button>
+            </form>
+            <p class="info">Enter the code to see files appear in real-time</p>
+        </div>
+
+        {% if error %}
+        <div class="error-box">
+            <h3>❌ Error</h3>
+            <p>{{ error }}</p>
+        </div>
+        {% endif %}
+    </div>
+
+    <footer class="footer">
+        <p>Contact: parimalhodar.dev@gmail.com | Designed & Developed by Parimal Hodar</p>
+    </footer>
+</body>
+
+</html>
